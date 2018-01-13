@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +45,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +89,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -148,69 +159,181 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BanqueoController.cs" />
+    <Compile Include="Controllers\ContactoController.cs" />
+    <Compile Include="Controllers\CursosController.cs" />
+    <Compile Include="Controllers\GaleriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NosotrosController.cs" />
+    <Compile Include="Controllers\RepasosController.cs" />
+    <Compile Include="Controllers\SedesController.cs" />
+    <Compile Include="Controllers\TalleresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\CursosLogic.cs" />
+    <Compile Include="Logic\EnvioMailLogic.cs" />
+    <Compile Include="Logic\TallerLogic.cs" />
+    <Compile Include="Models\DataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL01_INSCRIPCIONES.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL02_CURSOS.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL03_INS_CURSO.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL04_MENSAJES.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL06_MATRICULAS.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL07_PAQUETES.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL08_TALLERES.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\RegistroViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\flipclock.css" />
     <Content Include="Content\css\font-awesome.css" />
-    <Content Include="Content\css\mislider-custom.css" />
-    <Content Include="Content\css\mislider.css" />
+    <Content Include="Content\css\JiSlider.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\swipebox.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\images\1.1.jpg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\galeria\foto_10.jpg" />
+    <Content Include="Content\galeria\foto_1.jpg" />
+    <Content Include="Content\galeria\foto_11.jpg" />
+    <Content Include="Content\galeria\foto_12.jpg" />
+    <Content Include="Content\galeria\foto_13.jpg" />
+    <Content Include="Content\galeria\foto_14.jpg" />
+    <Content Include="Content\galeria\foto_15.jpg" />
+    <Content Include="Content\galeria\foto_16.jpg" />
+    <Content Include="Content\galeria\foto_17.jpg" />
+    <Content Include="Content\galeria\foto_18.jpg" />
+    <Content Include="Content\galeria\foto_19.jpg" />
+    <Content Include="Content\galeria\foto_2.jpg" />
+    <Content Include="Content\galeria\foto_20.jpg" />
+    <Content Include="Content\galeria\foto_21.jpg" />
+    <Content Include="Content\galeria\foto_22.jpg" />
+    <Content Include="Content\galeria\foto_3.jpg" />
+    <Content Include="Content\galeria\foto_4.jpg" />
+    <Content Include="Content\galeria\foto_5.jpg" />
+    <Content Include="Content\galeria\foto_6.jpg" />
+    <Content Include="Content\galeria\foto_7.jpg" />
+    <Content Include="Content\galeria\foto_8.jpg" />
+    <Content Include="Content\galeria\foto_9.jpg" />
+    <Content Include="Content\galeria\foto_clock.jpg" />
     <Content Include="Content\images\1.jpg" />
-    <Content Include="Content\images\2.1.jpg" />
     <Content Include="Content\images\2.jpg" />
-    <Content Include="Content\images\3.1.jpg" />
     <Content Include="Content\images\3.jpg" />
+    <Content Include="Content\images\4.jpg" />
     <Content Include="Content\images\5.jpg" />
     <Content Include="Content\images\6.jpg" />
     <Content Include="Content\images\7.jpg" />
     <Content Include="Content\images\8.jpg" />
-    <Content Include="Content\images\bg.jpg" />
-    <Content Include="Content\images\bg1.jpg" />
-    <Content Include="Content\images\fondo1.jpg" />
-    <Content Include="Content\images\fondo2.jpg" />
-    <Content Include="Content\images\fondo3.jpg" />
-    <Content Include="Content\images\g1.jpg" />
-    <Content Include="Content\images\g2.jpg" />
-    <Content Include="Content\images\g3.jpg" />
-    <Content Include="Content\images\g4.jpg" />
-    <Content Include="Content\images\g5.jpg" />
-    <Content Include="Content\images\g6.jpg" />
-    <Content Include="Content\images\g7.jpg" />
-    <Content Include="Content\images\g8.jpg" />
-    <Content Include="Content\images\g9.jpg" />
+    <Content Include="Content\images\arrow-top.png" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\banner1.jpg" />
+    <Content Include="Content\images\banner2_.jpg" />
+    <Content Include="Content\images\banner2_n.jpg" />
+    <Content Include="Content\images\banner3_n.jpg" />
+    <Content Include="Content\images\banner__.jpg" />
     <Content Include="Content\images\icons.svg" />
-    <Content Include="Content\images\logo.jpg" />
-    <Content Include="Content\images\logo_trans.png" />
+    <Content Include="Content\images\logo_trans2.png" />
+    <Content Include="Content\images\overlay.png" />
+    <Content Include="Content\images\photo_default.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\sede_ayacucho.png" />
+    <Content Include="Content\images\staff\Agustin Moron.jpg" />
+    <Content Include="Content\images\staff\Angel Saravia Pachas.jpg" />
+    <Content Include="Content\images\staff\carmen morales.jpg" />
+    <Content Include="Content\images\staff\dR. ANGEL ANICAMA.jpg" />
+    <Content Include="Content\images\staff\DR. ARTURO FERREL.jpg" />
+    <Content Include="Content\images\staff\DR. LICLa.jpg" />
+    <Content Include="Content\images\staff\DR. MARCOS CABRERA.jpg" />
+    <Content Include="Content\images\staff\DRA. JULIANA APARCANA.jpg" />
+    <Content Include="Content\images\staff\FABIAN ESPINO .jpg" />
+    <Content Include="Content\images\staff\FELIX VALLE.jpg" />
+    <Content Include="Content\images\staff\FRANK BELLIDO.jpg" />
+    <Content Include="Content\images\staff\Gustavo Oriundo.jpg" />
+    <Content Include="Content\images\staff\HUGO IPARRAGUIRRE.jpg" />
+    <Content Include="Content\images\staff\JESUS LAOS.jpg" />
+    <Content Include="Content\images\staff\JESUS POMA.jpg" />
+    <Content Include="Content\images\staff\JHONS OCHOA.jpg" />
+    <Content Include="Content\images\staff\Johns Ochoa.jpg" />
+    <Content Include="Content\images\staff\Juan Diaz Monge.jpg" />
+    <Content Include="Content\images\staff\LORENA MATEO.jpg" />
+    <Content Include="Content\images\staff\LUIS GADEA.jpg" />
+    <Content Include="Content\images\staff\LUIS OCNTRERAS.jpg" />
+    <Content Include="Content\images\staff\Manuel Ramos Sardón.jpg" />
+    <Content Include="Content\images\staff\MARIA DE PILAR MARTINEZ.jpg" />
+    <Content Include="Content\images\staff\Maria Martinez.jpg" />
+    <Content Include="Content\images\staff\maycol roque.jpg" />
+    <Content Include="Content\images\staff\osmar sulca diaz.jpg" />
+    <Content Include="Content\images\staff\Pedro Figueroa.jpg" />
+    <Content Include="Content\images\staff\VERONICA PURILLA.jpg" />
+    <Content Include="Content\images\staff\YURI.jpg" />
     <Content Include="Content\images\t1.jpg" />
     <Content Include="Content\images\t2.jpg" />
     <Content Include="Content\images\t3.jpg" />
     <Content Include="Content\images\t4.jpg" />
-    <Content Include="Content\images\up.png" />
+    <Content Include="Content\images\test.jpg" />
+    <Content Include="Content\images\test1.jpg" />
+    <Content Include="Content\images\test2.jpg" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\DataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\controls.js" />
     <Content Include="Scripts\easing.js" />
+    <Content Include="Scripts\flipclock.js" />
+    <Content Include="Scripts\JiSlider.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery.countup.js" />
     <Content Include="Scripts\jquery.flexslider.js" />
-    <Content Include="Scripts\jquery.hoverdir.js" />
     <Content Include="Scripts\jquery.swipebox.min.js" />
-    <Content Include="Scripts\mislider.js" />
-    <Content Include="Scripts\modernizr.custom.97074.js" />
+    <Content Include="Scripts\jquery.waypoints.min.js" />
+    <Content Include="Scripts\main_slider.js" />
     <Content Include="Scripts\move-top.js" />
-    <Content Include="Scripts\numscroller-1.0.js" />
+    <Content Include="Scripts\screenfull.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -226,22 +349,54 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Content\vouchers\" />
+    <Folder Include="Content\vouchers_tmp\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <Content Include="Content\images\Thumbs.db" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\DataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataModel.edmx.diagram">
+      <DependentUpon>DataModel.edmx</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Home\_Registrar.cshtml" />
+    <Content Include="Views\Cursos\Index.cshtml" />
+    <Content Include="Views\Repasos\Index.cshtml" />
+    <Content Include="Views\Talleres\Index.cshtml" />
+    <Content Include="Views\Banqueo\Index.cshtml" />
+    <Content Include="Views\Nosotros\Index.cshtml" />
+    <Content Include="Views\Galeria\Index.cshtml" />
+    <Content Include="Views\Contacto\Index.cshtml" />
+    <Content Include="Views\Nosotros\Staff.cshtml" />
+    <Content Include="Views\Cursos\_MatricularsePaquete.cshtml" />
+    <Content Include="Views\Cursos\_Matricula.cshtml" />
+    <Content Include="Views\Talleres\_MatriculaTaller.cshtml" />
+    <Content Include="Views\Talleres\_Matricula.cshtml" />
+    <Content Include="Views\Sedes\Ayacucho.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

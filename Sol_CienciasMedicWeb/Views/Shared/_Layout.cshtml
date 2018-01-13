@@ -1,73 +1,273 @@
-﻿<!DOCTYPE html>
+﻿<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Literature an Education Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
-    <!-- Meta tag Keywords -->
+    <title>Ciencias Medic</title>
+    <!-- custom-theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Literature web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Mastering Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!--// Meta tag Keywords -->
-    <!-- css files -->
-    <link rel="stylesheet" href="~/Content/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
-    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
-    <link rel="stylesheet" href="~/Content/css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
-    <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" property="" /> <!-- Flexslider-CSS -->
-    <link href="~/Content/css/mislider.css" rel="stylesheet" type="text/css" /> <!-- Testimonials-CSS -->
-    <link href="~/Content/css/mislider-custom.css" rel="stylesheet" type="text/css" /> <!-- Testimonials-CSS -->
-    <!-- //css files -->
-    <!-- online-fonts -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Athiti:200,300,400,500,600,700&amp;subset=latin-ext,thai,vietnamese" rel="stylesheet">
-    <!-- //online-fonts -->
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //custom-theme -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/JiSlider.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" property="" />
+
+    <link href="~/Content/css/style.css?v=1.0.0.6" rel="stylesheet" type="text/css" media="all" />
+
+    <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" property="" />
+    <!-- font-awesome-icons -->
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet"> 
+    <!-- //font-awesome-icons -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <script>
-        function JoinNow(e) {
-            $('#reg_name').animate({ scrollTop: $("#toTHIS").offset().top }, 500);
-        }
+        //$(function() {
+        //    if ($.browser.msie && $.browser.version.substr(0,1)<7) {
+        //        $('li').has('ul').mouseover(function() {
+        //            $(this).children('ul').show();
+        //        }).mouseout(function() {
+        //            $(this).children('ul').hide();
+        //        });
+        //    }
+        //});        
     </script>
+    
+    <link href="~/Content/css/flipclock.css" rel="stylesheet" type="text/css" media="all" />
+
+    @RenderSection("Styles", false)
 </head>
-<body> 
+	
+<body>
 <!-- banner -->
-<div class="main-agile">
-    <div class="banner2">
-        <div class="container">
-            <div class="top-nav">
-                <nav class="navbar navbar-default">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                        <a class="navbar-brand" href="index.html">
-                                <img alt="imagen_logo" width="80" align="left" height="95" src="~/Content/images/logo_trans.png" />
-                                <h1 style="color:#B40404">iencias Medic</h1>
+<div class="main_section_agile">
+    <div class="agileits_w3layouts_banner_nav">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header navbar-left">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="margin-top: -2% !important" href="@Url.Action("Index","Home")">
+                    <img alt="imagen_logo" width="350" align="left" height="70" src="~/Content/images/logo_trans2.png" />
+                    @*<h3 style="color:#ED1C24">iencias Medic</h3>*@
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <nav class="menu--iris">
+                    <ul id="menu" class="nav navbar-nav menu__list">
+                        <li class="menu__item"><a href="@Url.Action("Index","Home")" class="menu__link">Principal</a>
+                        </li>
+                        <li class="dropdown menu__item">
+                            <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Academia
+                                <b class="caret"></b>
+                            </a>
+                            <ul>
+                                <li><a href="@Url.Action("Index","Nosotros")">Quienes Somos</a></li>
+                                <li><a href="@Url.Action("Staff","Nosotros")">Nuestro Staff</a></li>
+                                <li><a href="@Url.Action("Index","Galeria")">Galeria</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown menu__item">
+                            <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Sedes
+                            <b class="caret"></b>
                         </a>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a class="active" href="index.html">Inicio</a></li>
-                            <li><a href="#about" class="scroll">Cursos</a></li>
-                            <li><a href="#services" class="scroll">Inscripciones</a></li>
-                            <li><a href="#faculties" class="scroll">Contactanos</a></li>
-                        </ul>
-                        <div class="clearfix"> </div>							
-                    </div>	
-                </nav>		
-            </div>		
+                            <ul>
+                                <li >
+                                    <a href="#">Ica</a>
+                                    <ul style="margin-left:-20px;">
+                                        <li class="dropdown menu__item">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos</a>
+                                            <ul style="margin-left:-20px;">
+                                                <li><a href="@Url.Action("Index","Cursos")">Ciencias Básicas</a></li>
+                                                <li><a href="@Url.Action("Index","Cursos")#ciencias-clinicas">Ciencias Clínicas</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="@Url.Action("Index","Talleres")">Talleres</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="@Url.Action("Ayacucho","Sedes")">Ayacucho</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu__item"><a href="@Url.Action("Index","Contacto")" class="menu__link">Contáctanos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- banner -->
+@RenderBody()
+    
+@Html.Partial("~/Views/Home/_Registrar.cshtml")
+
+<!-- footer -->
+<div class="footer">
+    <div class="f-bg-w3l">
+        <div class="container">
+            <div class="col-md-3 w3layouts_footer_grid">
+                <h2>Ciencias <span>Medic</span></h2>
+                <p style="text-align:justify;">Somos una institución médica con 4 años de experiencia brindando la mejor preparación a estudiantes de medicina y médicos a nivel nacional</p>
+                <br/>
+                <ul class="social_agileinfo">
+                    <li><a href="https://www.facebook.com/groups/1720464938186245/about/" class="w3_facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" class="w3_twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" class="w3_instagram"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#" class="w3_google"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 w3layouts_footer_grid">
+                <h2>Contáctanos</h2>
+                <div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <h2 style="margin-right: 10px;"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </h2>
+                        </div>
+                        <div class="col-md-10">
+                            <p style="font-size: 13px;">Informes e inscripciones: Av. Ayabaca N° 854 - Academia PowSang((Frente al Museo de Ica)</p>
+                            <p style="font-size: 13px;">Local : Av.San Martin 123-IST Computer Master (Frente a la iglesia San Francisco).</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <br/>
+                <div class="ftr-address">
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-phone" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block;"> +(051) 982 982 492</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="ftr-address">
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-phone" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block;"> +(051) 954 186 572</p>
+                    </div>
+               <div class="clearfix"> </div>
+                </div>
+                <br/>
+                <div class="ftr-address">
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-phone" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block;"> +(051)056213049 (PowSang)</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="ftr-address">
+                    <div >
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-envelope" aria-hidden="true"></i></h2>
+                        <p style="display: inline-block;">
+                            <a target="_blank" href="mailto:informes@cienciasmedic.com">informes@cienciasmedic.com</a>
+                        </p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="col-md-4 w3layouts_footer_grid">
+                <h2>Horarios de Atención</h2>
+                
+                <div>
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-calendar" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block; font-size: 13px;">Lunes a Viernes</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                
+                <div>
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-clock-o" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block; font-size: 13px;">08:00am a 1:30pm</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                
+                <div>
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-clock-o" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block; font-size: 13px;">03:30pm a 9:00pm</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                
+                <div>
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-calendar" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block; font-size: 13px;">Sábados</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                
+                <div>
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-clock-o" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block; font-size: 13px;">08:00am a 1:30pm</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+
+                <div>
+                    <div>
+                        <h2 style="display:inline-block; margin-right:10px;"><i class="fa fa-clock-o" aria-hidden="true"></i></h2>
+                        <p style="display:inline-block; font-size: 13px;">02:30pm a 8:00pm</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <br/>
+            <div class="clearfix"> </div>
+            <center>
+                <br/>
+                <br/>
+                <p style="color:white;">© 2017 Ciencias Medic. Todos los derechos reservados ScreedMarketing. | Desarrollado por <a href="https://vasquez8d.github.io/profile/" target="_blank">Alexsandre Vásquez</a></p>
+            </center>
         </div>
     </div>
-    <!-- //banner -->	
-</div>    
-@RenderBody()
-<!-- js-scripts -->			
+</div>
+
+<!-- //footer -->
+<!-- start-smoth-scrolling -->
 <!-- js -->
 <script type="text/javascript" src="~/Scripts/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="~/Scripts/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->
+<script src="~/Scripts/JiSlider.js"></script>
+<script>
+    $(window).load(function () {
+        $('#JiSlider').JiSlider({color: '#fff', start: 3, reverse: true}).addClass('ff')
+    })
+</script><script type="text/javascript">
+
+         		    var _gaq = _gaq || [];
+         		    _gaq.push(['_setAccount', 'UA-36251023-1']);
+         		    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+         		    _gaq.push(['_trackPageview']);
+
+         		    (function() {
+         		        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+         		        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         		        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         		    })();
+
+         		</script>
+<!-- stats -->
+<script src="~/Scripts/jquery.waypoints.min.js"></script>
+<script src="~/Scripts/jquery.countup.js"></script>
+<script>
+    $('.counter').countUp();
+</script>
+<!-- //stats -->
+<!-- //footer -->
 <!-- flexSlider -->
 <script defer src="~/Scripts/jquery.flexslider.js"></script>
 <script type="text/javascript">
@@ -81,7 +281,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     });
 </script>
 <!-- //flexSlider -->
-<!-- start-smoth-scrolling -->
+
+
 <script type="text/javascript" src="~/Scripts/move-top.js"></script>
 <script type="text/javascript" src="~/Scripts/easing.js"></script>
 <script type="text/javascript">
@@ -93,55 +294,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     });
 </script>
 <!-- start-smoth-scrolling -->
-		
-<!-- testimonial-plugin -->
-<script src="~/Scripts/mislider.js" type="text/javascript"></script>
-<script type="text/javascript">
-    jQuery(function ($) {
-        var slider = $('.mis-stage').miSlider({
-            //  The height of the stage in px. Options: false or positive integer. false = height is calculated using maximum slide heights. Default: false
-            stageHeight: 320,
-            //  Number of slides visible at one time. Options: false or positive integer. false = Fit as many as possible.  Default: 1
-            slidesOnStage: false,
-            //  The location of the current slide on the stage. Options: 'left', 'right', 'center'. Defualt: 'left'
-            slidePosition: 'center',
-            //  The slide to start on. Options: 'beg', 'mid', 'end' or slide number starting at 1 - '1','2','3', etc. Defualt: 'beg'
-            slideStart: 'mid',
-            //  The relative percentage scaling factor of the current slide - other slides are scaled down. Options: positive number 100 or higher. 100 = No scaling. Defualt: 100
-            slideScaling: 150,
-            //  The vertical offset of the slide center as a percentage of slide height. Options:  positive or negative number. Neg value = up. Pos value = down. 0 = No offset. Default: 0
-            offsetV: -5,
-            //  Center slide contents vertically - Boolean. Default: false
-            centerV: true,
-            //  Opacity of the prev and next button navigation when not transitioning. Options: Number between 0 and 1. 0 (transparent) - 1 (opaque). Default: .5
-            navButtonsOpacity: 1,
-        });
-    });
-</script>
-<!-- //testimonial-plugin -->
-<!-- for-gallery -->
-<script type="text/javascript" src="~/Scripts/jquery.hoverdir.js"></script>	
-<script type="text/javascript">
-    $(function() {
-					
-        $(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
-
-    });
-</script>
-<!-- for-gallery-rotation -->
-<script src="~/Scripts/modernizr.custom.97074.js"></script>
-<!--swipebox -->	
-<link rel="stylesheet" href="~/Content/css/swipebox.css">
-<script src="~/Scripts/jquery.swipebox.min.js"></script> 
-<script type="text/javascript">
-    jQuery(function($) {
-        $(".swipebox").swipebox();
-    });
-</script>
-<!-- //swipebox Ends -->
-<!-- //for-gallery-rotation -->
-<!-- //for-gallery -->
-<!-- smooth scrolling-bottom-to-top -->
+<!-- for bootstrap working -->
+<script src="~/Scripts/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- here stars scrolling icon -->
 <script type="text/javascript">
     $(document).ready(function() {
         /*
@@ -151,18 +307,46 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             scrollSpeed: 1200,
             easingType: 'linear' 
             };
-        */								
+        */
+								
         $().UItoTop({ easingType: 'easeOutQuart' });
+								
     });
 </script>
-<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-<!-- //smooth scrolling-bottom-to-top -->
-<!-- js for Counter -->
-<script type="text/javascript" src="~/Scripts/numscroller-1.0.js"></script>
-<!-- /js for Counter -->
-<!-- //js-scripts -->
+    
+    
+<script src="~/Scripts/screenfull.js"></script>
+<script>
+    $(function () {
+        $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+        if (!screenfull.enabled) {
+            return false;
+        }
+        $('#toggle').click(function () {
+            screenfull.toggle($('#container')[0]);
+        });	
+    });
+</script>
+<script src="~/Scripts/flipclock.js"></script>
+	
+<script type="text/javascript">
+    var clock;
+		
+    $(document).ready(function() {
+        var date = new Date(2018, 00, 04);
+        var now = new Date();
+        var diff = (date.getTime()/1000) - (now.getTime()/1000);
+
+        var clock = $('.clock').FlipClock(diff,{
+            clockFace: 'DailyCounter',
+            countdown: true
+        });  
+            
+    });
+</script>
+<!-- //here ends scrolling icon -->
 @RenderSection("scripts", required: false)
 </body>
 </html>
 
-    

@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_A27E8E_norman8dModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL01_INSCRIPCIONES">
+          <Key>
+            <PropertyRef Name="INS_ID" />
+          </Key>
+          <Property Name="INS_ID" Type="int" Nullable="false" />
+          <Property Name="INS_NOMBRES" Type="varchar" MaxLength="100" />
+          <Property Name="INS_APELLIDOS" Type="varchar" MaxLength="100" />
+          <Property Name="INS_DNI" Type="varchar" MaxLength="20" />
+          <Property Name="INS_CELL" Type="varchar" MaxLength="20" />
+          <Property Name="INS_EMAIL" Type="varchar" MaxLength="20" />
+          <Property Name="INS_EST_REG" Type="int" />
+          <Property Name="INS_FEC_REG" Type="datetime" />
+          <Property Name="INS_USU_REG" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL02_CURSOS">
+          <Key>
+            <PropertyRef Name="CUR_ID" />
+          </Key>
+          <Property Name="CUR_ID" Type="int" Nullable="false" />
+          <Property Name="CUR_NOMBRE" Type="varchar" MaxLength="100" />
+          <Property Name="CUR_DESC" Type="varchar" MaxLength="100" />
+          <Property Name="CUR_EST_REG" Type="int" />
+          <Property Name="CUR_FEC_REG" Type="datetime" />
+          <Property Name="CUR_USU_REG" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL03_INS_CURSO">
+          <Key>
+            <PropertyRef Name="INS_ID" />
+            <PropertyRef Name="CUR_ID" />
+          </Key>
+          <Property Name="INS_ID" Type="int" Nullable="false" />
+          <Property Name="CUR_ID" Type="int" Nullable="false" />
+          <Property Name="EST_REG" Type="int" />
+          <Property Name="FEC_INSC" Type="datetime" />
+          <Property Name="USU_REG" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TBL04_MENSAJES">
+          <Key>
+            <PropertyRef Name="MSJ_ID" />
+          </Key>
+          <Property Name="MSJ_ID" Type="int" Nullable="false" />
+          <Property Name="MSJ_NOMBRES" Type="varchar" MaxLength="100" />
+          <Property Name="MSJ_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="MSJ_TITULO" Type="varchar" MaxLength="100" />
+          <Property Name="MSJ_CONTENIDO" Type="varchar" MaxLength="300" />
+          <Property Name="MSJ_EST_REG" Type="int" />
+          <Property Name="MSJ_FEC_REG" Type="datetime" />
+          <Property Name="MSJ_USU_REG" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL06_MATRICULAS">
+          <Key>
+            <PropertyRef Name="MATRI_ID" />
+          </Key>
+          <Property Name="MATRI_ID" Type="int" Nullable="false" />
+          <Property Name="MAT_NOMBRES" Type="varchar" MaxLength="100" />
+          <Property Name="MAT_APELLIDOS" Type="varchar" MaxLength="100" />
+          <Property Name="MAT_DNI" Type="varchar" MaxLength="20" />
+          <Property Name="MAT_CELL" Type="varchar" MaxLength="20" />
+          <Property Name="MAT_EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="MAT_RUTA_VOUCHER" Type="varchar" MaxLength="200" />
+          <Property Name="PAQ_ID" Type="int" />
+          <Property Name="MAT_EST_REG" Type="int" />
+          <Property Name="MAT_FEC_REG" Type="datetime" />
+          <Property Name="MAT_USU_REG" Type="varchar" MaxLength="50" />
+          <Property Name="MAT_TIPO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL07_PAQUETES">
+          <Key>
+            <PropertyRef Name="PAQ_ID" />
+          </Key>
+          <Property Name="PAQ_ID" Type="int" Nullable="false" />
+          <Property Name="PAQ_NOMBRE" Type="varchar" MaxLength="100" />
+          <Property Name="PAQ_PRICE" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="PAQ_EST_REG" Type="int" />
+          <Property Name="CUR_ID" Type="int" />
+          <Property Name="PAQ_FEC_REG" Type="datetime" />
+          <Property Name="PAQ_USU_REG" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL08_TALLERES">
+          <Key>
+            <PropertyRef Name="TALL_ID" />
+          </Key>
+          <Property Name="TALL_ID" Type="int" Nullable="false" />
+          <Property Name="TALL_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="TALL_PRICE" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="TALL_EST_REG" Type="int" />
+          <Property Name="TALL_FEC_REG" Type="datetime" />
+          <Property Name="TALL_USU_REG" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CUR">
+          <End Role="TBL02_CURSOS" Type="Self.TBL02_CURSOS" Multiplicity="1" />
+          <End Role="TBL03_INS_CURSO" Type="Self.TBL03_INS_CURSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL02_CURSOS">
+              <PropertyRef Name="CUR_ID" />
+            </Principal>
+            <Dependent Role="TBL03_INS_CURSO">
+              <PropertyRef Name="CUR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INS">
+          <End Role="TBL01_INSCRIPCIONES" Type="Self.TBL01_INSCRIPCIONES" Multiplicity="1" />
+          <End Role="TBL03_INS_CURSO" Type="Self.TBL03_INS_CURSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL01_INSCRIPCIONES">
+              <PropertyRef Name="INS_ID" />
+            </Principal>
+            <Dependent Role="TBL03_INS_CURSO">
+              <PropertyRef Name="INS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_A27E8E_norman8dModelStoreContainer">
+          <EntitySet Name="TBL01_INSCRIPCIONES" EntityType="Self.TBL01_INSCRIPCIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL02_CURSOS" EntityType="Self.TBL02_CURSOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL03_INS_CURSO" EntityType="Self.TBL03_INS_CURSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL04_MENSAJES" EntityType="Self.TBL04_MENSAJES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL06_MATRICULAS" EntityType="Self.TBL06_MATRICULAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL07_PAQUETES" EntityType="Self.TBL07_PAQUETES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL08_TALLERES" EntityType="Self.TBL08_TALLERES" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CUR" Association="Self.FK_CUR">
+            <End Role="TBL02_CURSOS" EntitySet="TBL02_CURSOS" />
+            <End Role="TBL03_INS_CURSO" EntitySet="TBL03_INS_CURSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INS" Association="Self.FK_INS">
+            <End Role="TBL01_INSCRIPCIONES" EntitySet="TBL01_INSCRIPCIONES" />
+            <End Role="TBL03_INS_CURSO" EntitySet="TBL03_INS_CURSO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_A27E8E_norman8dModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL01_INSCRIPCIONES">
+          <Key>
+            <PropertyRef Name="INS_ID" />
+          </Key>
+          <Property Name="INS_ID" Type="Int32" Nullable="false" />
+          <Property Name="INS_NOMBRES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INS_APELLIDOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INS_DNI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INS_CELL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INS_EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INS_EST_REG" Type="Int32" />
+          <Property Name="INS_FEC_REG" Type="DateTime" Precision="3" />
+          <Property Name="INS_USU_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL03_INS_CURSO" Relationship="Self.FK_INS" FromRole="TBL01_INSCRIPCIONES" ToRole="TBL03_INS_CURSO" />
+        </EntityType>
+        <EntityType Name="TBL02_CURSOS">
+          <Key>
+            <PropertyRef Name="CUR_ID" />
+          </Key>
+          <Property Name="CUR_ID" Type="Int32" Nullable="false" />
+          <Property Name="CUR_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUR_DESC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUR_EST_REG" Type="Int32" />
+          <Property Name="CUR_FEC_REG" Type="DateTime" Precision="3" />
+          <Property Name="CUR_USU_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL03_INS_CURSO" Relationship="Self.FK_CUR" FromRole="TBL02_CURSOS" ToRole="TBL03_INS_CURSO" />
+        </EntityType>
+        <EntityType Name="TBL03_INS_CURSO">
+          <Key>
+            <PropertyRef Name="INS_ID" />
+            <PropertyRef Name="CUR_ID" />
+          </Key>
+          <Property Name="INS_ID" Type="Int32" Nullable="false" />
+          <Property Name="CUR_ID" Type="Int32" Nullable="false" />
+          <Property Name="EST_REG" Type="Int32" />
+          <Property Name="FEC_INSC" Type="DateTime" Precision="3" />
+          <Property Name="USU_REG" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL01_INSCRIPCIONES" Relationship="Self.FK_INS" FromRole="TBL03_INS_CURSO" ToRole="TBL01_INSCRIPCIONES" />
+          <NavigationProperty Name="TBL02_CURSOS" Relationship="Self.FK_CUR" FromRole="TBL03_INS_CURSO" ToRole="TBL02_CURSOS" />
+        </EntityType>
+        <Association Name="FK_INS">
+          <End Role="TBL01_INSCRIPCIONES" Type="Self.TBL01_INSCRIPCIONES" Multiplicity="1" />
+          <End Role="TBL03_INS_CURSO" Type="Self.TBL03_INS_CURSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL01_INSCRIPCIONES">
+              <PropertyRef Name="INS_ID" />
+            </Principal>
+            <Dependent Role="TBL03_INS_CURSO">
+              <PropertyRef Name="INS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUR">
+          <End Role="TBL02_CURSOS" Type="Self.TBL02_CURSOS" Multiplicity="1" />
+          <End Role="TBL03_INS_CURSO" Type="Self.TBL03_INS_CURSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL02_CURSOS">
+              <PropertyRef Name="CUR_ID" />
+            </Principal>
+            <Dependent Role="TBL03_INS_CURSO">
+              <PropertyRef Name="CUR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_A27E8E_norman8dEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL01_INSCRIPCIONES" EntityType="Self.TBL01_INSCRIPCIONES" />
+          <EntitySet Name="TBL02_CURSOS" EntityType="Self.TBL02_CURSOS" />
+          <EntitySet Name="TBL03_INS_CURSO" EntityType="Self.TBL03_INS_CURSO" />
+          <AssociationSet Name="FK_INS" Association="Self.FK_INS">
+            <End Role="TBL01_INSCRIPCIONES" EntitySet="TBL01_INSCRIPCIONES" />
+            <End Role="TBL03_INS_CURSO" EntitySet="TBL03_INS_CURSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUR" Association="Self.FK_CUR">
+            <End Role="TBL02_CURSOS" EntitySet="TBL02_CURSOS" />
+            <End Role="TBL03_INS_CURSO" EntitySet="TBL03_INS_CURSO" />
+          </AssociationSet>
+          <EntitySet Name="TBL04_MENSAJES" EntityType="DB_A27E8E_norman8dModel.TBL04_MENSAJES" />
+          <EntitySet Name="TBL06_MATRICULAS" EntityType="DB_A27E8E_norman8dModel.TBL06_MATRICULAS" />
+          <EntitySet Name="TBL07_PAQUETES" EntityType="DB_A27E8E_norman8dModel.TBL07_PAQUETES" />
+          <EntitySet Name="TBL08_TALLERES" EntityType="DB_A27E8E_norman8dModel.TBL08_TALLERES" />
+        </EntityContainer>
+        <EntityType Name="TBL04_MENSAJES">
+          <Key>
+            <PropertyRef Name="MSJ_ID" />
+          </Key>
+          <Property Name="MSJ_ID" Type="Int32" Nullable="false" />
+          <Property Name="MSJ_NOMBRES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MSJ_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MSJ_TITULO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MSJ_CONTENIDO" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MSJ_EST_REG" Type="Int32" />
+          <Property Name="MSJ_FEC_REG" Type="DateTime" Precision="3" />
+          <Property Name="MSJ_USU_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL06_MATRICULAS">
+          <Key>
+            <PropertyRef Name="MATRI_ID" />
+          </Key>
+          <Property Name="MATRI_ID" Type="Int32" Nullable="false" />
+          <Property Name="MAT_NOMBRES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_APELLIDOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_DNI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_CELL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_RUTA_VOUCHER" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PAQ_ID" Type="Int32" />
+          <Property Name="MAT_EST_REG" Type="Int32" />
+          <Property Name="MAT_FEC_REG" Type="DateTime" Precision="3" />
+          <Property Name="MAT_USU_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_TIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL07_PAQUETES">
+          <Key>
+            <PropertyRef Name="PAQ_ID" />
+          </Key>
+          <Property Name="PAQ_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAQ_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PAQ_PRICE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="PAQ_EST_REG" Type="Int32" />
+          <Property Name="CUR_ID" Type="Int32" />
+          <Property Name="PAQ_FEC_REG" Type="DateTime" Precision="3" />
+          <Property Name="PAQ_USU_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL08_TALLERES">
+          <Key>
+            <PropertyRef Name="TALL_ID" />
+          </Key>
+          <Property Name="TALL_ID" Type="Int32" Nullable="false" />
+          <Property Name="TALL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TALL_PRICE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="TALL_EST_REG" Type="Int32" />
+          <Property Name="TALL_FEC_REG" Type="DateTime" Precision="3" />
+          <Property Name="TALL_USU_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_A27E8E_norman8dModelStoreContainer" CdmEntityContainer="DB_A27E8E_norman8dEntities">
+          <EntitySetMapping Name="TBL01_INSCRIPCIONES">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL01_INSCRIPCIONES">
+              <MappingFragment StoreEntitySet="TBL01_INSCRIPCIONES">
+                <ScalarProperty Name="INS_ID" ColumnName="INS_ID" />
+                <ScalarProperty Name="INS_NOMBRES" ColumnName="INS_NOMBRES" />
+                <ScalarProperty Name="INS_APELLIDOS" ColumnName="INS_APELLIDOS" />
+                <ScalarProperty Name="INS_DNI" ColumnName="INS_DNI" />
+                <ScalarProperty Name="INS_CELL" ColumnName="INS_CELL" />
+                <ScalarProperty Name="INS_EMAIL" ColumnName="INS_EMAIL" />
+                <ScalarProperty Name="INS_EST_REG" ColumnName="INS_EST_REG" />
+                <ScalarProperty Name="INS_FEC_REG" ColumnName="INS_FEC_REG" />
+                <ScalarProperty Name="INS_USU_REG" ColumnName="INS_USU_REG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL02_CURSOS">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL02_CURSOS">
+              <MappingFragment StoreEntitySet="TBL02_CURSOS">
+                <ScalarProperty Name="CUR_ID" ColumnName="CUR_ID" />
+                <ScalarProperty Name="CUR_NOMBRE" ColumnName="CUR_NOMBRE" />
+                <ScalarProperty Name="CUR_DESC" ColumnName="CUR_DESC" />
+                <ScalarProperty Name="CUR_EST_REG" ColumnName="CUR_EST_REG" />
+                <ScalarProperty Name="CUR_FEC_REG" ColumnName="CUR_FEC_REG" />
+                <ScalarProperty Name="CUR_USU_REG" ColumnName="CUR_USU_REG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL03_INS_CURSO">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL03_INS_CURSO">
+              <MappingFragment StoreEntitySet="TBL03_INS_CURSO">
+                <ScalarProperty Name="INS_ID" ColumnName="INS_ID" />
+                <ScalarProperty Name="CUR_ID" ColumnName="CUR_ID" />
+                <ScalarProperty Name="EST_REG" ColumnName="EST_REG" />
+                <ScalarProperty Name="FEC_INSC" ColumnName="FEC_INSC" />
+                <ScalarProperty Name="USU_REG" ColumnName="USU_REG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL04_MENSAJES">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL04_MENSAJES">
+              <MappingFragment StoreEntitySet="TBL04_MENSAJES">
+                <ScalarProperty Name="MSJ_USU_REG" ColumnName="MSJ_USU_REG" />
+                <ScalarProperty Name="MSJ_FEC_REG" ColumnName="MSJ_FEC_REG" />
+                <ScalarProperty Name="MSJ_EST_REG" ColumnName="MSJ_EST_REG" />
+                <ScalarProperty Name="MSJ_CONTENIDO" ColumnName="MSJ_CONTENIDO" />
+                <ScalarProperty Name="MSJ_TITULO" ColumnName="MSJ_TITULO" />
+                <ScalarProperty Name="MSJ_EMAIL" ColumnName="MSJ_EMAIL" />
+                <ScalarProperty Name="MSJ_NOMBRES" ColumnName="MSJ_NOMBRES" />
+                <ScalarProperty Name="MSJ_ID" ColumnName="MSJ_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL06_MATRICULAS">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL06_MATRICULAS">
+              <MappingFragment StoreEntitySet="TBL06_MATRICULAS">
+                <ScalarProperty Name="MAT_TIPO" ColumnName="MAT_TIPO" />
+                <ScalarProperty Name="MAT_USU_REG" ColumnName="MAT_USU_REG" />
+                <ScalarProperty Name="MAT_FEC_REG" ColumnName="MAT_FEC_REG" />
+                <ScalarProperty Name="MAT_EST_REG" ColumnName="MAT_EST_REG" />
+                <ScalarProperty Name="PAQ_ID" ColumnName="PAQ_ID" />
+                <ScalarProperty Name="MAT_RUTA_VOUCHER" ColumnName="MAT_RUTA_VOUCHER" />
+                <ScalarProperty Name="MAT_EMAIL" ColumnName="MAT_EMAIL" />
+                <ScalarProperty Name="MAT_CELL" ColumnName="MAT_CELL" />
+                <ScalarProperty Name="MAT_DNI" ColumnName="MAT_DNI" />
+                <ScalarProperty Name="MAT_APELLIDOS" ColumnName="MAT_APELLIDOS" />
+                <ScalarProperty Name="MAT_NOMBRES" ColumnName="MAT_NOMBRES" />
+                <ScalarProperty Name="MATRI_ID" ColumnName="MATRI_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL07_PAQUETES">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL07_PAQUETES">
+              <MappingFragment StoreEntitySet="TBL07_PAQUETES">
+                <ScalarProperty Name="PAQ_USU_REG" ColumnName="PAQ_USU_REG" />
+                <ScalarProperty Name="PAQ_FEC_REG" ColumnName="PAQ_FEC_REG" />
+                <ScalarProperty Name="CUR_ID" ColumnName="CUR_ID" />
+                <ScalarProperty Name="PAQ_EST_REG" ColumnName="PAQ_EST_REG" />
+                <ScalarProperty Name="PAQ_PRICE" ColumnName="PAQ_PRICE" />
+                <ScalarProperty Name="PAQ_NOMBRE" ColumnName="PAQ_NOMBRE" />
+                <ScalarProperty Name="PAQ_ID" ColumnName="PAQ_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL08_TALLERES">
+            <EntityTypeMapping TypeName="DB_A27E8E_norman8dModel.TBL08_TALLERES">
+              <MappingFragment StoreEntitySet="TBL08_TALLERES">
+                <ScalarProperty Name="TALL_USU_REG" ColumnName="TALL_USU_REG" />
+                <ScalarProperty Name="TALL_FEC_REG" ColumnName="TALL_FEC_REG" />
+                <ScalarProperty Name="TALL_EST_REG" ColumnName="TALL_EST_REG" />
+                <ScalarProperty Name="TALL_PRICE" ColumnName="TALL_PRICE" />
+                <ScalarProperty Name="TALL_NAME" ColumnName="TALL_NAME" />
+                <ScalarProperty Name="TALL_ID" ColumnName="TALL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

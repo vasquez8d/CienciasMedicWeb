@@ -1,0 +1,62 @@
+﻿@model Sol_CienciasMedicWeb.Models.TBL06_MATRICULAS
+
+@{
+    ViewBag.Title = "_Matricula";
+}
+
+<!-- Modal1 -->
+<div class="modal fade" id="ModalMatriTalleres" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <div class="signin-form profile">
+                    <h3 class="agileinfo_sign">Matricularse</h3>
+                    <div class="login-form">
+                        <h4>Para matricularte mediante la plataforma web, deberás seguir los siguientes pasos : </h4>
+                        <br />
+                        <ul style="text-align: left">
+                            <li style="list-style-type: none;"><i class="fa fa-check" aria-hidden="true"></i> Realizar el pago en la cuenta BCP </li>
+                            <li style="list-style-type: none;"><i class="fa fa-check" aria-hidden="true"></i> Escanear el voucher o tomarle una foto (nitida) y tenerlo listo para completar el siguiente formulario.</li>
+                            <li style="list-style-type: none;"><i class="fa fa-check" aria-hidden="true"></i> Si ya tienes todo listo de los pasos anteriores, completar el siguiente formulario.</li>
+                            <li style="list-style-type: none;"><i class="fa fa-check" aria-hidden="true"></i> Luego de completar el formulario, en las próximas horas te llegara un correo de confirmación, pasada las 24 horas, comunicarse con informes@cienciasmedic.com </li>
+                        </ul>
+                        <br />
+                        <h4>Si ya realizaste estos pasos, rellena el siguiente formulario : </h4>
+                        @using (Html.BeginForm("_MatriculaTaller", "Talleres", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.EditorFor(model => model.MAT_NOMBRES, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombres", required = "required" } })
+
+                            @Html.EditorFor(model => model.MAT_APELLIDOS, new { htmlAttributes = new { @class = "form-control", placeholder = "Apellidos", required = "required" } })
+
+                            @Html.EditorFor(model => model.MAT_DNI, new { htmlAttributes = new { @class = "form-control", placeholder = "DNI", required = "required" } })
+
+                            @Html.EditorFor(model => model.MAT_CELL, new { htmlAttributes = new { @class = "form-control", placeholder = "Celular", required = "required" } })
+
+                            @Html.EditorFor(model => model.MAT_EMAIL, new { htmlAttributes = new { @class = "form-control", placeholder = "Correo Electrónico", required = "required" } })
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <p>Voucher BCP</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="file" required="required" name="file" value="Archivo" accept="image/jpg, image/jpeg, image/png" class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <h3>¿En qué taller te matricularás?</h3>
+
+                            @Html.DropDownListFor(m => m.PAQ_ID, (SelectList)ViewBag.dataTalleres, new { @class = "form-control", required = "required" })
+
+                            <div class="tp">
+                                <input type="submit" value="Enviar Matricula">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Modal1 -->
